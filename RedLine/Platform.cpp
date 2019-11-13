@@ -33,7 +33,7 @@ namespace GameEngine
 
 	void Platform::RenderClear()
 	{
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
 		SDL_RenderClear(renderer);
 	}
 
@@ -56,10 +56,34 @@ namespace GameEngine
 
 	}
 
+	void Platform::RenderImage(Image* image, int x, int y,
+		int clipX, int clipY, int clipW, int clipH,
+		float angle)
+	{
+		RenderTexture(image, x, y, clipX, clipY, clipW, clipH, angle);
+	}
+
 	void Platform::RenderImage(Image* image, int x, int y, float angle)
 	{
 		RenderTexture(image, x, y, angle);
 
+	}
+	void Platform::RenderTexture(Image* image, int x, int y,
+		int clipX, int clipY, int clipW, int clipH,
+		double a)
+	{
+		SDL_Rect drawRect;
+		drawRect.x = clipX;
+		drawRect.y = clipY;
+		drawRect.w = clipW;
+		drawRect.h = clipH;
+		SDL_Rect srcrect;
+		srcrect.x = x; 
+		srcrect.y = y;
+		srcrect.w = clipW;
+		srcrect.h = clipH;
+		SDL_RenderCopyEx(renderer, image->GetTexture()
+			, &drawRect, &srcrect, a, NULL, SDL_FLIP_NONE);
 	}
 
 	void Platform::RenderTexture(Image* image, int x, int y, double a)

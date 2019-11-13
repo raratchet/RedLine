@@ -25,6 +25,7 @@ namespace RedLine
 		{
 			bullet->Update();
 		}
+		player->Update();
 	}
 
 	void Game::Close() {

@@ -4,13 +4,14 @@
 #include "Bullet.h"
 #include "Platform.h"
 #include <list>
+#include "Sprites.h"
 
 using namespace GameEngine;
 
 class Player : 	public GameObject
 {
 private:
-	Image* image;
+	Sprite* image;
 	int x{ 0 };
 	int y{ 0 };
 	Platform* platform;

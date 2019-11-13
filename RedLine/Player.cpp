@@ -29,8 +29,8 @@ void Player::LoadImage(std::string name, int x, int y)
 {
 	this->x = x;
 	this->y = y;
-	image = new Image();
-	image->LoadImage(name);
+	image = new Sprite(platform, name,x,y,44,39,1,3);
+	
 }
 
 void Player::SetActiveBullets(std::list<Bullet*>* activeBullets)
@@ -43,12 +43,13 @@ void Player::Init()
 }
 void Player::Draw() 
 {
-	platform->RenderImage(image, x, y, 0);
+	image->Draw();
 	
 }
 void Player::Update() 
 {
-
+	image->setX(x);
+	image->setY(y);
 }
 
 void Player::KeyboardInput(int key)
