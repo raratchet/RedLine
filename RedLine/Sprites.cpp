@@ -4,6 +4,8 @@ namespace GameEngine
 	Sprite::Sprite(Platform* platform, std::string pathImage, int x, int y, int h, int w,
 		int horizontalFrames, int verticalFrames)
 	{
+		this->h = h;
+		this->w = w;
 		actualFrame = 0;
 		this->platform = platform;
 		source = new Image();
@@ -39,7 +41,14 @@ namespace GameEngine
 			actualFrame=0;
 		}		
 	}
-
+	int Sprite::getH()
+	{
+		return h;
+	}
+	int Sprite::getW()
+	{
+		return w;
+	}
 	void Sprite::setX(int x)
 	{
 		this->x = x;

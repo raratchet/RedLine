@@ -58,7 +58,9 @@ void Player::KeyboardInput(int key)
 	{
 		auto bullet = new Bullet(platform);
 		bullet->LoadImage("Assets/bullet.png", x+10, y-5);
+		bullet->SetActive(true);
 		activeBullets->push_back(bullet);
+		
 	}
 	if (key == SDLK_LEFT)
 	{

@@ -12,6 +12,18 @@ int Bullet::GetY()
 {
 	return y;
 }
+int Bullet::GetH()
+{
+	return image->GetHeight();
+}
+int Bullet::GetW()
+{
+	return image->GetWidth();
+}
+void Bullet::SetActive(bool active) 
+{
+	this->active = active;
+}
 void Bullet::SetX(int x) 
 {
 	this->x = x;
@@ -37,8 +49,11 @@ void Bullet::Init()
 }
 void Bullet::Draw()
 {
-	platform->RenderImage(image, x, y, 0);
-
+	if (active) 
+	{
+		platform->RenderImage(image, x, y, 0);
+	}
+	
 }
 void Bullet::Update()
 {

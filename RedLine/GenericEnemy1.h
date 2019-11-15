@@ -3,6 +3,8 @@
 #include "Image.h"
 #include "Bullet.h"
 #include "Platform.h"
+#include "Bullet.h"
+#include "Sprites.h"
 #include <list>
 
 	using namespace GameEngine;
@@ -10,11 +12,12 @@
 	class GenericEnemy1 : public GameObject
 	{
 	private:
-		Image* image;
+		Sprite* image;
 		int x{ 0 };
 		int y{ 0 };
 		Platform* platform;
 		std::list<Bullet*>* activeBullets;
+		bool active;
 	public:
 		int GetX();
 		int GetY();
@@ -26,6 +29,7 @@
 		void Init() override;
 		void Draw() override;
 		void Update() override;
+		void MoveEnemy();
 	};
 
 

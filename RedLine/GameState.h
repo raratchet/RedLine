@@ -2,12 +2,8 @@
 
 namespace GameEngine
 {
-
-
 	class Platform;
 	class GameStateManager;
-
-
 	class GameState
 	{
 	public:

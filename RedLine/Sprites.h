@@ -15,10 +15,14 @@ namespace GameEngine
 		int totalFrames;
 		int x;
 		int y;
+		int w;
+		int h;
 	public:
 		Sprite(Platform* platform, std::string pathImage,int x, int y, int h, int w,
 			   int horizontalFrames, int verticalFrames);
 		void Draw();
+		int getW();
+		int getH();
 		void setX(int x);
 		void setY(int y);
 	};

@@ -22,6 +22,7 @@ void GenericEnemy1::SetY(int y)
 
 GenericEnemy1::GenericEnemy1(Platform* platform)
 {
+	active = true;
 	this->platform = platform;
 }
 
@@ -29,8 +30,7 @@ void GenericEnemy1::LoadImage(std::string name, int x, int y)
 {
 	this->x = x;
 	this->y = y;
-	image = new Image();
-	image->LoadImage(name);
+	image = new Sprite(platform, name, x, y, 44, 39, 1, 3);
 }
 
 void GenericEnemy1::SetActiveBullets(std::list<Bullet*>* activeBullets)
@@ -43,10 +43,31 @@ void GenericEnemy1::Init()
 }
 void GenericEnemy1::Draw()
 {
-	platform->RenderImage(image, x, y, 0);
+	image->Draw();
 
 }
 void GenericEnemy1::Update()
 {
+	int w = image->getW();
+	int h = image->getH();
+	MoveEnemy();
+	if (activeBullets != nullptr)
+	{
+		for (auto bullet : *activeBullets)
+		{
+			//x > bullet->GetX() && x + w < bullet->GetX() &&
+			if ( y>bullet->GetY() &&   bullet->GetY()< y + h)
+			{
+				active = false;
+				bullet->SetActive(false);
+			}
+		}
+	}
+}
 
+void GenericEnemy1::MoveEnemy()
+{
+	//image->setY(y);
+	//image->setX(sin(y * 0.1) * 140 + x);
+	y += 1;
 }

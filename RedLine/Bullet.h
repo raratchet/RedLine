@@ -13,9 +13,13 @@ private:
 	int y{ 0 };
 	int velocity = 15;
 	Platform* platform;
+	int active;
 public:
+	void SetActive(bool);
 	int GetX();
 	int GetY();
+	int GetW();
+	int GetH();
 	void SetX(int x);
 	void SetY(int y);
 	void SetVelocity(int vel);
