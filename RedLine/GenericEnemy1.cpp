@@ -55,8 +55,8 @@ void GenericEnemy1::Update()
 	{
 		for (auto bullet : *activeBullets)
 		{
-			//x > bullet->GetX() && x + w < bullet->GetX() &&
-			if ( y>bullet->GetY() &&   bullet->GetY()< y + h)
+			Vector2 p = bullet->GetPos();
+			if (CircleCollision(5, 5, p.GetX(), p.GetY(), x, y))
 			{
 				active = false;
 				bullet->SetActive(false);
@@ -70,4 +70,25 @@ void GenericEnemy1::MoveEnemy()
 	//image->setY(y);
 	//image->setX(sin(y * 0.1) * 140 + x);
 	y += 1;
+}
+
+bool GenericEnemy1::BoxCollision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
+{
+	if ((x2 > x1&& x2 < x1 + w1) || (x2 + w2 > x1&& x2 + w2 < x1 + w1))
+	{
+		if ((y2 > y1&& y2 < y1 + h1) || (y2 + h2 > y1&& y2 + h2 < y1 + h1))
+		{
+			return true;
+		}
+	}
+	return false;
+
+}
+bool GenericEnemy1::CircleCollision(float r1, float r2, int x1, int y1, int x2, int y2)
+{
+	float d = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+	if (d >= r1 + r2)
+		return false;
+	else
+		return true;
 }

@@ -4,14 +4,16 @@ Bullet::Bullet(Platform* platform)
 {
 	this->platform = platform;
 }
-int Bullet::GetX() 
+void Bullet::SetPos(float x, float y)
 {
-	return x;
+	pos.SetX(x);
+	pos.SetY(y);
 }
-int Bullet::GetY() 
+Vector2 Bullet::GetPos() 
 {
-	return y;
+	return pos;
 }
+
 int Bullet::GetH()
 {
 	return image->GetHeight();
@@ -24,38 +26,31 @@ void Bullet::SetActive(bool active)
 {
 	this->active = active;
 }
-void Bullet::SetX(int x) 
-{
-	this->x = x;
-}
-void Bullet::SetY(int y) 
-{
-	this->y = y;
-}
+
 void Bullet::SetVelocity(int vel)
 {
 	this->velocity = vel;
 }
 void Bullet::LoadImage(std::string name, int x, int y)
 {
-	this->x = x;
-	this->y = y;
+	pos.SetX(x);
+	pos.SetY(y);
 	image = new Image();
 	image->LoadImage(name);
 }
 void Bullet::Init()
 {
-	y = y - 3;
+	pos.SetY(pos.GetY() - 3);
 }
 void Bullet::Draw()
 {
 	if (active) 
 	{
-		platform->RenderImage(image, x, y, 0);
+		platform->RenderImage(image, pos.GetX(), pos.GetY(), 0);
 	}
 	
 }
 void Bullet::Update()
 {
-	y -= velocity;
+	pos.SetY(pos.GetY() - velocity);
 }

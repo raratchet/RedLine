@@ -4,6 +4,7 @@
 #include "GameState.h"
 #include "GameStateManager.h"
 #include "Game.h"
+#include "Vector2.h"
 
 using namespace GameEngine;
 using namespace RedLine;

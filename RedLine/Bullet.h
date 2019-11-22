@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Image.h"
 #include "Platform.h"
+#include "Vector2.h"
 
 using namespace GameEngine;
 
@@ -9,15 +10,14 @@ class Bullet : public GameObject
 {
 private:
 	Image* image;
-	int x{ 0 };
-	int y{ 0 };
 	int velocity = 15;
 	Platform* platform;
 	int active;
+	Vector2 pos;
 public:
 	void SetActive(bool);
-	int GetX();
-	int GetY();
+	void SetPos(float x, float y);
+	Vector2 GetPos();
 	int GetW();
 	int GetH();
 	void SetX(int x);

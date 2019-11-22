@@ -30,6 +30,10 @@
 		void Draw() override;
 		void Update() override;
 		void MoveEnemy();
+	private:	
+		bool BoxCollision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2);
+		bool CircleCollision(float r1, float r2, int x1, int y1, int x2, int y2);
+
 	};
 
 
