@@ -6,6 +6,7 @@
 #include <list>
 #include "Bullet.h"
 #include "GenericEnemy1.h"
+#include "GenericEnemy2.h"
 
 namespace RedLine
 {
@@ -16,7 +17,7 @@ namespace RedLine
 		Player* player;
 		Platform* platform;
 		std::list<Bullet*> activeBullets;
-		std::list<GenericEnemy1*> ships;
+		std::list<GameObject*> ships;
 	public:
 		virtual void Init(Platform*, GameStateManager*) override;
 		virtual void Draw() override;

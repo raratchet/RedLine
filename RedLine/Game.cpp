@@ -38,7 +38,14 @@ namespace RedLine
 		{
 			auto *ship = new GenericEnemy1(platform);
 			ship->SetActiveBullets(&activeBullets);
-			ship->LoadImage("Assets/player.png", 205, 100);
+			ship->LoadImage("Assets/player.png", 205, 0);
+			ships.push_back(ship);
+		}
+		if (rand() % 100 == 2) 
+		{
+			auto* ship = new GenericEnemy2(platform);
+			ship->SetActiveBullets(&activeBullets);
+			ship->LoadImage("Assets/player2.png", rand()% 400+20, 0);
 			ships.push_back(ship);
 		}
 	}

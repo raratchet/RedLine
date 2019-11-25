@@ -22,13 +22,13 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{9FB9C5D6-B940-4646-9464-8D72F548615B}</ProjectGuid>
     <RootNamespace>RedLine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -131,6 +131,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="GenericEnemy1.cpp" />
+    <ClCompile Include="GenericEnemy2.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Platform.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GenericEnemy1.h" />
+    <ClInclude Include="GenericEnemy2.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />

@@ -13,8 +13,8 @@ namespace GameEngine
 		Platform* platform;
 		std::vector<SDL_Rect> frames;
 		int totalFrames;
-		int x;
-		int y;
+		float x;
+		float y;
 		int w;
 		int h;
 	public:
@@ -23,10 +23,10 @@ namespace GameEngine
 		void Draw();
 		int getW();
 		int getH();
-		void setX(int x);
-		void setY(int y);
-		int getX();
-		int getY();
+		void setX(float x);
+		void setY(float y);
+		float getX();
+		float getY();
 		
 	};
 

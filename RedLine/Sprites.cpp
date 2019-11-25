@@ -49,21 +49,21 @@ namespace GameEngine
 	{
 		return w;
 	}
-	void Sprite::setX(int x)
+	void Sprite::setX(float x)
 	{
 		this->x = x;
 	}
 
-	int Sprite::getX()
+	float Sprite::getX()
 	{
 		return x;
 	}
 
-	int Sprite::getY()
+	float Sprite::getY()
 	{
 		return y;
 	}
-	void Sprite::setY(int y)
+	void Sprite::setY(float y)
 	{
 		this->y = y;
 	}

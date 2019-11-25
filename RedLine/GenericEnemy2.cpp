@@ -1,54 +1,56 @@
-#include "GenericEnemy1.h"
+#include "GenericEnemy2.h"
 
-float GenericEnemy1::GetX()
+float GenericEnemy2::GetX()
 {
 	return x;
 }
 
-float GenericEnemy1::GetY()
+float GenericEnemy2::GetY()
 {
 	return y;
 }
 
-void GenericEnemy1::SetX(float x)
+void GenericEnemy2::SetX(float x)
 {
 	this->x = x;
 }
 
-void GenericEnemy1::SetY(float y)
+void GenericEnemy2::SetY(float y)
 {
 	this->y = y;
 }
 
-GenericEnemy1::GenericEnemy1(Platform* platform)
+GenericEnemy2::GenericEnemy2(Platform* platform)
 {
 	active = true;
 	this->platform = platform;
+	if (rand() % 100 > 50)	direction = -1;
+	else direction = 1;
 }
 
-void GenericEnemy1::LoadImage(std::string name, int x, int y)
+void GenericEnemy2::LoadImage(std::string name, int x, int y)
 {
 	this->x = x;
 	this->y = y;
 	image = new Sprite(platform, name, x, y, 44, 39, 1, 3);
 }
 
-void GenericEnemy1::SetActiveBullets(std::list<Bullet*>* activeBullets)
+void GenericEnemy2::SetActiveBullets(std::list<Bullet*>* activeBullets)
 {
 	this->activeBullets = activeBullets;
 }
 
-void GenericEnemy1::Init()
+void GenericEnemy2::Init()
 {
 }
-void GenericEnemy1::Draw()
+void GenericEnemy2::Draw()
 {
 	if (active)
 	{
 		image->Draw();
 	}
 }
-void GenericEnemy1::Update()
+void GenericEnemy2::Update()
 {
 	if (!active)
 		return;
@@ -71,15 +73,19 @@ void GenericEnemy1::Update()
 	}
 }
 
-void GenericEnemy1::MoveEnemy()
+void GenericEnemy2::MoveEnemy()
 {
 	image->setY(y+0.8);
-	image->setX(sin(y * 0.1) * 180+ 205);
+	if (image->getY() > 250) 
+	{
+		image->setY(y + 1.5);
+		image->setX(x + 1.5 *direction);
+	}
 	x = image->getX();
 	y = image->getY();
 }
 
-bool GenericEnemy1::BoxCollision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
+bool GenericEnemy2::BoxCollision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
 {
 	if ((x2 > x1&& x2 < x1 + w1) || (x2 + w2 > x1&& x2 + w2 < x1 + w1))
 	{
@@ -91,7 +97,7 @@ bool GenericEnemy1::BoxCollision(int x1, int y1, int w1, int h1, int x2, int y2,
 	return false;
 
 }
-bool GenericEnemy1::CircleCollision(float r1, float r2, int x1, int y1, int x2, int y2)
+bool GenericEnemy2::CircleCollision(float r1, float r2, int x1, int y1, int x2, int y2)
 {
 	float d = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 	if (d >= r1 + r2)

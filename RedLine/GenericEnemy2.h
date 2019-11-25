@@ -9,7 +9,7 @@
 
 	using namespace GameEngine;
 
-	class GenericEnemy1 : public GameObject
+	class GenericEnemy2 : public GameObject
 	{
 	private:
 		Sprite* image;
@@ -18,12 +18,13 @@
 		Platform* platform;
 		std::list<Bullet*>* activeBullets;
 		bool active;
+		int direction;
 	public:
 		float GetX();
 		float GetY();
 		void SetX(float x);
 		void SetY(float y);
-		GenericEnemy1(Platform* platform);
+		GenericEnemy2(Platform* platform);
 		void LoadImage(std::string name, int x, int y);
 		void SetActiveBullets(std::list<Bullet*>* activeBullets);
 		void Init() override;
