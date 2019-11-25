@@ -16,6 +16,7 @@ private:
 	Vector2 pos;
 public:
 	void SetActive(bool);
+	bool GetActive();
 	void SetPos(float x, float y);
 	Vector2 GetPos();
 	int GetW();

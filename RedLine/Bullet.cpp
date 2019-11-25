@@ -22,6 +22,10 @@ int Bullet::GetW()
 {
 	return image->GetWidth();
 }
+bool Bullet::GetActive()
+{
+	return active;
+}
 void Bullet::SetActive(bool active) 
 {
 	this->active = active;

@@ -46,7 +46,8 @@ namespace RedLine
 	void Game::Close() {
 	}
 
-	bool Game::Input(int key) {
+	bool Game::Input(int key) 
+	{
 		player->KeyboardInput(key);
 		return false;
 	}

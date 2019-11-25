@@ -54,6 +54,15 @@ namespace GameEngine
 		this->x = x;
 	}
 
+	int Sprite::getX()
+	{
+		return x;
+	}
+
+	int Sprite::getY()
+	{
+		return y;
+	}
 	void Sprite::setY(int y)
 	{
 		this->y = y;

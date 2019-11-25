@@ -25,6 +25,9 @@ namespace GameEngine
 		int getH();
 		void setX(int x);
 		void setY(int y);
+		int getX();
+		int getY();
+		
 	};
 
 }
