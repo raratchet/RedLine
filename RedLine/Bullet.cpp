@@ -58,3 +58,10 @@ void Bullet::Update()
 {
 	pos.SetY(pos.GetY() - velocity);
 }
+
+bool Bullet::isActive()
+{
+	return active;
+}
+
+

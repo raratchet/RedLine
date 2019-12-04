@@ -16,8 +16,13 @@ namespace RedLine
 	private:
 		Player* player;
 		Platform* platform;
-		std::list<Bullet*> activeBullets;
-		std::list<GameObject*> ships;
+		EnemyBullet* bomb;
+		std::list<Bullet*> activePlayerBullets;
+		std::list<Bullet*> activeEnemyBullets;
+		std::list<Enemy*> ships;
+		unsigned int lastTime;
+
+		GenericEnemy1* temp;
 	public:
 		virtual void Init(Platform*, GameStateManager*) override;
 		virtual void Draw() override;
@@ -25,6 +30,12 @@ namespace RedLine
 		virtual void Close() override;
 		virtual bool Input(int) override;
 		virtual bool InputMouse(int x, int y, int button, int state) override;
+	private:
+		void SpawnEnemy();
+		void BulletDraw();
+		void BulletUpdate();
+		void ShipDraw();
+		void ShipUpdate();
 	};
 
 }

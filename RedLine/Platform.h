@@ -14,6 +14,8 @@ namespace GameEngine
 		SDL_Window* window;
 	public:
 		static SDL_Renderer* renderer;
+		unsigned int GetTime();
+		const Uint8* GetKeyboardState();
 		Platform(std::string name);
 		~Platform();
 		void RenderClear();

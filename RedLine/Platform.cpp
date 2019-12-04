@@ -86,6 +86,17 @@ namespace GameEngine
 			, &drawRect, &srcrect, a, NULL, SDL_FLIP_NONE);
 	}
 
+	unsigned int Platform::GetTime()
+	{
+		return SDL_GetTicks();
+	}
+
+	const Uint8* Platform::GetKeyboardState() 
+	{
+		 const Uint8* temp = SDL_GetKeyboardState(NULL);
+		 return temp;
+	}
+
 	void Platform::RenderTexture(Image* image, int x, int y, double a)
 	{
 		SDL_Rect srcrect;

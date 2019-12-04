@@ -8,7 +8,7 @@ using namespace GameEngine;
 
 class Bullet : public GameObject
 {
-private:
+protected:
 	Image* image;
 	int velocity = 15;
 	Platform* platform;
@@ -21,12 +21,14 @@ public:
 	Vector2 GetPos();
 	int GetW();
 	int GetH();
-	void SetX(int x);
-	void SetY(int y);
 	void SetVelocity(int vel);
 	Bullet(Platform* platform);
 	void LoadImage(std::string name, int x, int y);
 	void Init() override;
 	void Draw() override;
 	void Update() override;
+	bool isActive();
+
+protected:
+	void CheckForOutOfBounds();
 };

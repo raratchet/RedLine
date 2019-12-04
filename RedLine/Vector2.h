@@ -11,9 +11,11 @@ class Vector2
 		float GetY();
 		void SetY(float y);
 		void SetX(float x);
+		float VectorSize(Vector2 vector);
 		Vector2 operator+(Vector2 v2);
 		Vector2 operator-(Vector2 v2);
 		float operator*(Vector2 v2);
 		Vector2 operator*(float esc);
+		Vector2 UnitVector(Vector2 vec);
 };
 

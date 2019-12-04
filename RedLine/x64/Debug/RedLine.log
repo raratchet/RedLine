@@ -1,0 +1,21 @@
+﻿  Bullet.cpp
+  Game.cpp
+C:\Users\Maximiliano\Desktop\Redline\RedLine\RedLine\Image.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  GameObject.cpp
+  GameStateManager.cpp
+C:\Users\Maximiliano\Desktop\Redline\RedLine\RedLine\Platform.h(3,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  GenericEnemy1.cpp
+C:\Users\Maximiliano\Desktop\Redline\RedLine\RedLine\Platform.h(3,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  Image.cpp
+C:\Users\Maximiliano\Desktop\Redline\RedLine\RedLine\Image.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  main.cpp
+C:\Users\Maximiliano\Desktop\Redline\RedLine\RedLine\Image.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  Platform.cpp
+C:\Users\Maximiliano\Desktop\Redline\RedLine\RedLine\Platform.h(3,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  Player.cpp
+C:\Users\Maximiliano\Desktop\Redline\RedLine\RedLine\Platform.h(3,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  Sprites.cpp
+C:\Users\Maximiliano\Desktop\Redline\RedLine\RedLine\Image.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  Vector2.cpp
+  Generando código...
+C:\Users\Maximiliano\Desktop\Redline\RedLine\RedLine\Image.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory

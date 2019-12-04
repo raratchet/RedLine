@@ -1,25 +1,5 @@
 #include "GenericEnemy2.h"
 
-float GenericEnemy2::GetX()
-{
-	return x;
-}
-
-float GenericEnemy2::GetY()
-{
-	return y;
-}
-
-void GenericEnemy2::SetX(float x)
-{
-	this->x = x;
-}
-
-void GenericEnemy2::SetY(float y)
-{
-	this->y = y;
-}
-
 GenericEnemy2::GenericEnemy2(Platform* platform)
 {
 	active = true;
@@ -30,8 +10,8 @@ GenericEnemy2::GenericEnemy2(Platform* platform)
 
 void GenericEnemy2::LoadImage(std::string name, int x, int y)
 {
-	this->x = x;
-	this->y = y;
+	this->pos.SetX(x);
+	this->pos.SetY(y);
 	image = new Sprite(platform, name, x, y, 44, 39, 1, 3);
 }
 
@@ -63,7 +43,7 @@ void GenericEnemy2::Update()
 		{
 			Vector2 p = bullet->GetPos();
 			//if (CircleCollision(5, 5, p.GetX(), p.GetY(), x, y))
-			if(BoxCollision(x,y,w,h, p.GetX(), p.GetY(), bullet->GetH(), bullet->GetW()) &&
+			if(BoxCollision(pos.GetX(),pos.GetY(),w,h, p.GetX(), p.GetY(), bullet->GetH(), bullet->GetW()) &&
 				bullet->GetActive())
 			{
 				active = false;
@@ -73,16 +53,26 @@ void GenericEnemy2::Update()
 	}
 }
 
+void GenericEnemy2::UpdatePlayerPos(Vector2 pos) 
+{
+
+}
+
+void GenericEnemy2::Shoot()
+{
+
+}
+
 void GenericEnemy2::MoveEnemy()
 {
-	image->setY(y+0.8);
+	image->setY(pos.GetY()+0.8);
 	if (image->getY() > 250) 
 	{
-		image->setY(y + 1.5);
-		image->setX(x + 1.5 *direction);
+		image->setY(pos.GetY() + 1.5);
+		image->setX(pos.GetX() + 1.5 *direction);
 	}
-	x = image->getX();
-	y = image->getY();
+	pos.SetX(image->getX());
+	pos.SetY(image->getY());
 }
 
 bool GenericEnemy2::BoxCollision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
