@@ -13,7 +13,7 @@ private:
 	int time;
 public:
 	EnemyBullet(Platform* platform);
-	EnemyBullet(Platform* platform, Vector2 initialPos, Vector2 playerPos);
+	EnemyBullet(Platform* platform, Vector2 initialPos, Vector2 direction);
 	void Update()override;
 	void Init()override;
 };

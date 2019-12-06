@@ -9,11 +9,11 @@ EnemyBullet::EnemyBullet(Platform* platform) :Bullet(platform)
 	time = 0;
 }
 
-EnemyBullet::EnemyBullet(Platform* platform, Vector2 initialPos, Vector2 playerPos) : Bullet(platform)
+EnemyBullet::EnemyBullet(Platform* platform, Vector2 initialPos, Vector2 direction) : Bullet(platform)
 {
 	active = true;
 	this->initialPos = initialPos;
-	this->playerPos = playerPos;
+	this->playerPos = direction;
 	dir = Vector2();
 	time = 0;
 }
@@ -30,8 +30,9 @@ void EnemyBullet::Update()
 		Vector2 v(playerPos.GetX() - initialPos.GetX(), playerPos.GetY() - initialPos.GetY());
 		v = v.UnitVector(v);
 		dir = Vector2(v.GetX(), v.GetY());
+		if (playerPos.GetX() == 0 && playerPos.GetY() == 0) dir = Vector2(0,1);
 	}
 	time++;
-	pos.SetX(initialPos.GetX() + time * dir.GetX()*3 );
-	pos.SetY(initialPos.GetY() + time * dir.GetY()*5 );
+	pos.SetX(initialPos.GetX() + time * dir.GetX()* velocity );
+	pos.SetY(initialPos.GetY() + time * dir.GetY()* velocity );
 }

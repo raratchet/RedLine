@@ -34,7 +34,11 @@ namespace GameEngine
 			frames[actualFrame].w, 0);
 		if(actualFrame < totalFrames-1)
 		{
-			actualFrame++;
+			if(lastTime + 300 < platform->GetTime())
+			{
+				actualFrame++;
+				lastTime = platform->GetTime();
+			}
 		}
 		else
 		{

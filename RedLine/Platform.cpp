@@ -10,6 +10,7 @@ namespace GameEngine
 	{
 		width = 480;
 		height = 640;
+		window = 0;
 
 		if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 			std::cout << "SDL_Init";
@@ -27,6 +28,18 @@ namespace GameEngine
 		if (renderer == nullptr) {
 			std::cout << "CreateRenderer";
 			SDL_Quit();
+			return;
+		}
+
+		if (TTF_Init() != 0)
+		{
+			std::cout << "TTF_Init error";
+			return;
+		}
+
+		if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+		{
+			std::cout << "Audio error";
 			return;
 		}
 	}
@@ -86,6 +99,17 @@ namespace GameEngine
 			, &drawRect, &srcrect, a, NULL, SDL_FLIP_NONE);
 	}
 
+	void Platform::RenderTexture(Font* font, int x, int y, double angle)
+	{
+		SDL_Rect srcrect;
+		srcrect.x = x;
+		srcrect.y = y;
+		srcrect.w = font->GetWidth();
+		srcrect.h = font->GetHeight();
+		SDL_RenderCopyEx(renderer, font->GetTexture()
+			, NULL, &srcrect, angle, NULL, SDL_FLIP_NONE);
+	}
+
 	unsigned int Platform::GetTime()
 	{
 		return SDL_GetTicks();
@@ -106,6 +130,28 @@ namespace GameEngine
 		srcrect.h = image->GetHeight();
 		SDL_RenderCopyEx(renderer, image->GetTexture()
 			, NULL, &srcrect, a, NULL, SDL_FLIP_NONE);
+	}
+
+	void Platform::PlaySound(Sound* sound) {
+		ReproduceSound(sound->GetSound());
+	}
+
+	void Platform::PlayMusic(Music* sound) {
+		ReproduceMusic(sound->GetMusic());
+	}
+
+	void Platform::ReproduceSound(Mix_Chunk* chunk) {
+		Mix_PlayChannel(-1, chunk, 0);
+	}
+
+	void Platform::ReproduceMusic(Mix_Music* chunk) {
+		Mix_PlayMusic(chunk, 10);
+	}
+
+	void Platform::RenderFont(Font* font, int x, int y, float angle)
+	{
+		RenderTexture(font, x, y, angle);
+
 	}
 
 	Platform::~Platform()

@@ -13,6 +13,7 @@ namespace GameEngine
 		Platform* platform;
 		std::vector<SDL_Rect> frames;
 		int totalFrames;
+		unsigned int lastTime;
 		float x;
 		float y;
 		int w;

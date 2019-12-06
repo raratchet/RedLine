@@ -13,15 +13,10 @@
 	class GenericEnemy2 : public Enemy
 	{
 	private:
-		Sprite* image;
-		Platform* platform;
-		std::list<Bullet*>* activeBullets;
-		bool active;
 		int direction;
 	public:
 		GenericEnemy2(Platform* platform);
 		void LoadImage(std::string name, int x, int y);
-		void SetActiveBullets(std::list<Bullet*>* activeBullets);
 		void Init() override;
 		void Draw() override;
 		void Update() override;

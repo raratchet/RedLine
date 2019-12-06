@@ -3,29 +3,62 @@
 
 namespace RedLine
 {
+	int Game::score = 0;
+
 	void Game::Init(Platform* platform, GameStateManager* gameStateManager) {
 		this->platform = platform;
 		lastTime = platform->GetTime();
 		player = new Player(platform);
-		player->LoadImage("Assets/player.png",205,400);
+		player->LoadImage("Assets/player3.png",205,400);
 		player->SetActivePlayerBullets(&activePlayerBullets);
 		player->SetActiveEnemyBullets(&activeEnemyBullets);
+		player->SetActiveEnemies(&ships);
+		InitBackGround();
+	}
+
+	void Game::InitBackGround()
+	{
+		background = new Image();
+		background->LoadImage("./Assets/Back.png");
+		gameOver = new Image();
+		gameOver->LoadImage("./Assets/GM.png");
+		backMusic = new Music();
+		backMusic->LoadSound("./Assets/8_Bit_Universe_CHOPSUEY.mp3");
+		platform->PlayMusic(backMusic);
+		fscore = new Font();
+		fscore->SetUp(""+ to_string(score),"./Assets/Team.ttf",13);
+	}
+
+	void Game::DrawBackGround()
+	{
+		platform->RenderImage(background,0,0,0);
+		fscore->UpdateText("" + to_string(score));
+		platform->RenderFont(fscore,10,10,0);
 	}
 
 	void Game::Draw() {
 		platform->RenderClear();
+		DrawBackGround();
 		player->Draw();
 		BulletDraw();
 		ShipDraw();
+		if(player->IsDead()) platform->RenderImage(gameOver, 140, 240, 0);
 		platform->RenderPresent();
 	}
 
 	void Game::Update() 
 	{
+		if (player->IsDead()) return;
 		BulletUpdate();
 		player->Update();
 		ShipUpdate();
 		SpawnEnemy();
+		RemoveInActiveElements();
+	}
+
+	void Game::AddScore(int scoreA)
+	{
+		score += scoreA;
 	}
 
 	void Game::Close() 
@@ -45,22 +78,28 @@ namespace RedLine
 
 	void Game::SpawnEnemy()
 	{
-		if (lastTime + 1000 < platform->GetTime())
+		if (lastTime + 1500 < platform->GetTime())
 		{
 			int a = rand();
-			if(a % 10 == 1)
+			int x = 0;
+			if (a % 3 == 0) x = 205;
+			else if (a % 3 == 1) x = 350;
+			else if (a % 3 == 2) x = 100;
+			if(a % 2 == 0)
 			{
 				auto* ship = new GenericEnemy1(platform);
-				ship->SetActiveBullets(&activeEnemyBullets);
-				ship->LoadImage("Assets/player.png", 205, 0);
+				ship->SetPlayerActiveBullets(&activePlayerBullets);
+				ship->SetEnemyActiveBullets(&activeEnemyBullets);
+				ship->LoadImage("Assets/enemy.png", 205, 5);
 				ship->UpdatePlayerPos(player->GetPos());
 				ships.push_back(ship);
 				lastTime = platform->GetTime();
-			}else if (a % 10 == 2)
+			}else if (a % 10 == 1)
 			{
 				auto* ship = new GenericEnemy2(platform);
-				ship->SetActiveBullets(&activeEnemyBullets);
-				ship->LoadImage("Assets/player.png", 205, 0);
+				ship->SetPlayerActiveBullets(&activePlayerBullets);
+				ship->SetEnemyActiveBullets(&activeEnemyBullets);
+				ship->LoadImage("Assets/enemy.png", x, 5);
 				ship->UpdatePlayerPos(player->GetPos());
 				ships.push_back(ship);
 				lastTime = platform->GetTime();
@@ -86,7 +125,7 @@ namespace RedLine
 		for (auto bullet : activePlayerBullets)
 		{
 			if (bullet->IsOutOfBounds() || !(bullet->isActive())) {
-				//eliminar de la lista
+				inActiveElements.push_back(bullet);
 				continue;
 			}
 			bullet->Draw();
@@ -94,7 +133,7 @@ namespace RedLine
 		for (auto bullet : activeEnemyBullets)
 		{
 			if (bullet->IsOutOfBounds() || !(bullet->isActive())) {
-				//eliminar de la lista
+				inActiveElements.push_back(bullet);
 				continue;
 			}
 			bullet->Draw();
@@ -114,12 +153,47 @@ namespace RedLine
 		for (auto ship : ships)
 		{
 			if (ship->IsOutOfBounds() || !(ship->isActive())) {
-				//eliminar de la lista
+				inActiveElements.push_back(ship);
 				continue;
 			}
 			ship->UpdatePlayerPos(player->GetPos());
 			ship->Update();
-			if (rand() % 200 < 1) ship->Shoot();
+			ship->Shoot();
+		}
+		RemoveFromList(&ships);
+	}
+
+	void Game::RemoveInActiveElements()
+	{
+		RemoveFromList(&ships);
+		RemoveFromList(&activeEnemyBullets);
+		RemoveFromList(&activePlayerBullets);
+		inActiveElements.clear();
+	}
+
+	void Game::RemoveFromList(std::list<GameObject*>* listToMod)
+	{
+		for (auto element : inActiveElements)
+		{
+			listToMod->remove(element);
 		}
 	}
+
+	void Game::RemoveFromList(std::list<Bullet*>* listToMod)
+	{
+		for (auto element : inActiveElements)
+		{
+			listToMod->remove((Bullet*)element);
+		}
+	}
+
+	void Game::RemoveFromList(std::list<Enemy*>* listToMod)
+	{
+		for (auto element : inActiveElements)
+		{
+			listToMod->remove((Enemy*)element);
+		}
+	}
+
+
 }
